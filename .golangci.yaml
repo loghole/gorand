@@ -1,0 +1,33 @@
+run:
+  skip-dirs:
+    - internal/otgrpc
+  tests: false
+  timeout: 5m
+linters:
+  enable-all: true
+  disable:
+    - wrapcheck
+    - exhaustivestruct
+  fast: false
+linters-settings:
+  gocritic:
+    enabled-tags:
+      - style
+      - experimental
+      - performance
+      - diagnostic
+      - opinionated
+
+  govet:
+    enable-all: true
+    disable:
+      - shadow
+
+  gci:
+    local-prefixes: github.com/loghole/tracing
+
+  wrapcheck:
+    ignoreSigs:
+      - .Errorf(
+      - errors.New(
+      - .WrapWithCode(
