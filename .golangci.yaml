@@ -6,7 +6,6 @@ run:
 linters:
   enable-all: true
   disable:
-    - wrapcheck
     - exhaustivestruct
   fast: false
 linters-settings:
