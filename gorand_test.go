@@ -47,8 +47,8 @@ func TestNewSource(t *testing.T) {
 
 	tests := []struct {
 		name string
-		seed int64
 		want []int64
+		seed int64
 	}{
 		{
 			name: "pass",
@@ -56,11 +56,15 @@ func TestNewSource(t *testing.T) {
 			want: []int64{8855534638979991142},
 		},
 	}
-	for _, tt := range tests {
+	for _, rt := range tests {
+		tt := rt
 		t.Run(tt.name, func(t *testing.T) {
-			src := gorand.NewSource(tt.seed)
+			t.Parallel()
 
-			got := make([]int64, 0, len(tt.want))
+			var (
+				src = gorand.NewSource(tt.seed)
+				got = make([]int64, 0, len(tt.want))
+			)
 
 			for i := 0; i < len(tt.want); i++ {
 				got = append(got, src.Int63())
